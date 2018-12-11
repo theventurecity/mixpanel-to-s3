@@ -1,2 +1,3 @@
-.vscode/
-.env-rcnavas/
+.vscode
+.env-rcnavas
+.DS_Store
