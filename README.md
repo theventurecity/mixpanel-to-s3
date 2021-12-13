@@ -20,7 +20,7 @@ All parameters are expected as Environment Variables:
 
 ## Running on local Docker
 1. Edit `.env` file and set the proper values for each environment variable
-2. Create Docker image with `docker build --rm -f "Dockerfile" -t mixpanel-to-s3:latest .`
+2. Create Docker image with `docker build --rm -f "Dockerfile" -t mixpanel-to-s3:latest .` (Note: In case of building locally from Macbook M1 arch, then `docker buildx build --rm -f "Dockerfile" --platform=linux/amd64 -t mixpanel-to-s3:latest .` to make it work on ECS Fargate).
 3. Run Docker image with `docker run --rm -it --env-file .env mixpanel-to-s3:latest`
 
 ## Running without Docker
