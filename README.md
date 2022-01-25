@@ -38,3 +38,7 @@ Example:
 given date is 2018-11-01, then the final S3 file will be under: `s3://S3_BUCKET/S3_PATH/year=2018/month=11/day=01/rawEvents_2018-11-01.json.gz`
 This folder naming convention make it easier to be queried with tools like Hive or AWS glue, in a way that data will be partitioned by year, month and day.
 
+## Data Pipeline Archeticture
+
+![data_pipeline drawio](https://user-images.githubusercontent.com/10829464/151036494-ef6cd43b-4701-464d-aaa0-0be282a9ac1c.png)
+
