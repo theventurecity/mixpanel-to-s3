@@ -1,5 +1,5 @@
-resource "aws_scheduler_schedule" "pushCron" {
-  name = "PushCron"
+resource "aws_scheduler_schedule" "mixPanel" {
+  name = "triggerMixpanel"
   flexible_time_window {
     mode = "OFF"
   }
