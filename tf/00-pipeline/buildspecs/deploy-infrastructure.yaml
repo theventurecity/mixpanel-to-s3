@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - TF_VERSION="1.1.5"
+      - curl -X GET -sS https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip -O
+      - unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /tmp/
+      - install -m +x /tmp/terraform /usr/local/bin/
+      - terraform --version
+  pre_build:
+    commands:
+      - cd ${TARGET_DIRECTORY}
+      - /bin/bash init.sh "${ENV}"
+  build:
+    commands:
+      - /bin/bash deploy.sh "${ENV}"
