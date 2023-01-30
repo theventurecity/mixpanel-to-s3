@@ -41,3 +41,4 @@ This folder naming convention make it easier to be queried with tools like Hive 
 
 ![data_pipeline drawio](https://user-images.githubusercontent.com/10829464/151036494-ef6cd43b-4701-464d-aaa0-0be282a9ac1c.png)
 
+This needs to be updated.
