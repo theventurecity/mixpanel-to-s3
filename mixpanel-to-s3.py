@@ -34,7 +34,7 @@ Last Updated: 2018-10-16
 class mixpanelS3:
     PART_SIZE = 5*1024*1024 # 5 Mbytes is minimum part size for S3 multipart uploads.
 
-    def __init__(self, mixpanel_api_secret, aws_region, aws_id, aws_secret, logger, use_threads=True):        
+    def __init__(self, mixpanel_api_secret, logger, use_threads=True):        
         self.api_secret = mixpanel_api_secret
         # self.aws_region = aws_region
         # self.aws_id = aws_id
