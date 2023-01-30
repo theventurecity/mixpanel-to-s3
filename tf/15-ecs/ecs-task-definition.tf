@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "this" {
       },
       {
         "name": "MIXPANEL_API_SECRET",
-        "value": "function_name"
+        "value": "4c0cd1e0f1a12fd937c60b7dc1245d3a"
       }
     ]
   }
