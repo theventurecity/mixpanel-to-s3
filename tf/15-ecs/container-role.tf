@@ -56,16 +56,6 @@ resource "aws_iam_role" "task_role" {
         "Service": "ecs-tasks.amazonaws.com"
       },
       "Action": "sts:AssumeRole"
-    },
-    {
-      "Action": [
-        "s3:PutObject"
-      ],
-      "Effect": "Allow",
-      "Resource": [
-        "${aws_s3_bucket.appi_mixpanel_bucket.arn}",
-        "${aws_s3_bucket.appi_mixpanel_bucket.arn}/*"
-      ]
     }
   ]
 }
