@@ -192,7 +192,8 @@ resource "aws_iam_role_policy" "deployer" {
         "logs:DescribeLogGroups",
         "ecs:RegisterTaskDefinition",
         "ecs:DeregisterTaskDefinition",
-        "iam:PassRole",
+        "iam:*",
+        
         "scheduler:*",
         "cloudwatch:*",
         "ec2:*"
