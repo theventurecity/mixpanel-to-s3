@@ -4,7 +4,7 @@ resource "aws_scheduler_schedule" "mixPanel" {
     mode = "OFF"
   }
 
-  schedule_expression = "rate(90 minutes)"
+  schedule_expression = "rate(2 minutes)"
 
   target {
     arn      = data.aws_ecs_cluster.this.arn
