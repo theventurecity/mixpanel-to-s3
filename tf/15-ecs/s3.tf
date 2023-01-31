@@ -20,7 +20,7 @@ resource "aws_s3_bucket_versioning" "appi_mixpanel_bucket_versioning" {
   }
 }
 resource "aws_s3_bucket_public_access_block" "appi_media_bucket_block_public_ccess" {
-  bucket                  = "appi-mixpanel-${var.env}"
+  bucket                  = "appi-redshift-mixpanel-${var.env}"
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
