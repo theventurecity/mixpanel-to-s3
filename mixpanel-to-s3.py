@@ -124,6 +124,7 @@ if end >= start:
                 path=S3_PATH, 
                 partition=day.strftime("year=%Y/month=%m/day=%d"), 
                 isodate=day.isoformat()
+            )
         )
 else:
     log.info('Nothing to download or date is too recent START_DATE={}'.format(START_DATE))
