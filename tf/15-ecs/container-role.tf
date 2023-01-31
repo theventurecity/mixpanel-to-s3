@@ -62,3 +62,26 @@ resource "aws_iam_role" "task_role" {
 EOF
 }
 
+
+resource "aws_iam_role_policy" "task_role_policy" {
+  name = "${local.basename}-execution-role"
+  role = aws_iam_role.task_role.id
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:"s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "${aws_s3_bucket.appi_mixpanel_bucket.arn}",
+        "${aws_s3_bucket.appi_mixpanel_bucket.arn}/*"
+      ]
+    }
+  ]
+}
+EOF
+}
