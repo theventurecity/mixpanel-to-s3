@@ -66,11 +66,13 @@ class mixpanelS3:
             req_params['params']['where'] = event
         response = requests.request(**req_params)
         self.logger.info('Got HTTP response from {}: {}'.format(response.request.url, response.status_code))
-        self.logger.info('BODY{}: {}'.format(response.request.url, response.json()))
+        self.logger.info('Got HTTP body from {}: {}'.format(response.request.url, response))
 
         return response
     
     def s3MultipartUpload(self, httpResponse, bucket, key):
+        self.logger.info('Starting the multipart upload....')
+
         if httpResponse.status_code != requests.codes.ok:
             self.logger.error('Nothing to upload! HTTP Status: {}'.format(httpResponse.status_code))
             return
@@ -86,10 +88,6 @@ class mixpanelS3:
             self.logger.info('DONE Uploading multipart file to S3 bucket: {} key: {}'.format(bucket, key))
 
     def rawEventsToS3(self, from_date, to_date, bucket, key):
-        self.exportEvents(
-                from_date=from_date,
-                to_date=to_date
-            )
         self.s3MultipartUpload(
             self.exportEvents(
                 from_date=from_date,
