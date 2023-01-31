@@ -77,6 +77,15 @@ resource "aws_iam_role_policy" "deployer" {
       ]
     },
     {
+      "Effect":"Allow",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::appi-redshift-mixpanel-${var.env}"
+      ]
+    },
+    {
       "Sid":"KMSTerraformStateLock",
       "Effect": "Allow",
       "Action": [

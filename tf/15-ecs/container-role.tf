@@ -44,8 +44,8 @@ EOF
 }
 
 resource "aws_iam_role" "task_role" {
-  name = "${local.basename}-task-role"
-
+  name               = "${local.basename}-task-role"
+  depends_on         = [aws_s3_bucket.appi_mixpanel_bucket]
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
