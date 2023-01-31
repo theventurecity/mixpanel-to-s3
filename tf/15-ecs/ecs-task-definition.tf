@@ -36,11 +36,11 @@ resource "aws_ecs_task_definition" "this" {
     "environment": [
       {
         "name": "S3_BUCKET",
-        "value": "function_name"
+        "value": "${aws_s3_bucket.appi_mixpanel_bucket.bucket}"
       },
       {
         "name": "S3_PATH",
-        "value": "function_name"
+        "value": "mixpanel"
       },
       {
         "name": "MIXPANEL_API_SECRET",

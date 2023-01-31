@@ -85,19 +85,19 @@ class mixpanelS3:
             self.s3_client.upload_fileobj(data, bucket, key, Config=config)
             self.logger.info('DONE Uploading multipart file to S3 bucket: {} key: {}'.format(bucket, key))
 
-    def rawEventsToS3(self, from_date, to_date):
+    def rawEventsToS3(self, from_date, to_date, bucket, key):
         self.exportEvents(
                 from_date=from_date,
                 to_date=to_date
             )
-        # self.s3MultipartUpload(
-        #     self.exportEvents(
-        #         from_date=from_date,
-        #         to_date=to_date
-        #     ),
-        #     bucket=bucket,
-        #     key=key
-        # )
+        self.s3MultipartUpload(
+            self.exportEvents(
+                from_date=from_date,
+                to_date=to_date
+            ),
+            bucket=bucket,
+            key=key
+        )
 
 # Set up logging
 logging.basicConfig()
@@ -119,6 +119,11 @@ if end >= start:
         mixpanel.rawEventsToS3(
             from_date=day.isoformat(),
             to_date=day.isoformat(),
+            bucket=S3_BUCKET,
+            key="{path}/{partition}/rawEvents_{isodate}.json.gz".format(
+                path=S3_PATH, 
+                partition=day.strftime("year=%Y/month=%m/day=%d"), 
+                isodate=day.isoformat()
         )
 else:
     log.info('Nothing to download or date is too recent START_DATE={}'.format(START_DATE))
