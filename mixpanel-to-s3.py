@@ -14,9 +14,6 @@ if using Docker, you can store the environment variables in a file with one ENVV
 then run the docker container with --env-file parameter like:
   docker run --env-file file_with_env_vars docker_image_name:tag
 '''
-#AWS_REGION              = os.environ['AWS_REGION']
-#AWS_ACCESS_KEY_ID       = os.environ['AWS_ACCESS_KEY_ID'] # Need an IAM user with read/write access to S3 bucket
-#AWS_SECRET_ACCESS_KEY   = os.environ['AWS_SECRET_ACCESS_KEY'] # Need an IAM user with read/write access to S3 bucket
 S3_BUCKET               = os.environ['S3_BUCKET']
 S3_PATH                 = os.environ['S3_PATH'] # DO NOT use leading or trailing slash /
 MIXPANEL_API_SECRET     = os.environ['MIXPANEL_API_SECRET']
