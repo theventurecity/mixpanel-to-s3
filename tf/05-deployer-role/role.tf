@@ -196,7 +196,9 @@ resource "aws_iam_role_policy" "deployer" {
         
         "scheduler:*",
         "cloudwatch:*",
-        "ec2:*"
+        "ec2:*",
+        "ecr:*",
+        "s3:*"
       ],
       "Resource": [
         "*"
