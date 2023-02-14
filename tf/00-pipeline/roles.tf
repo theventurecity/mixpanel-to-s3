@@ -147,7 +147,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
         "codestar-connections:UseConnection"
       ],
       "Resource": [
-        "${data.aws_ssm_parameter.codestar_arn.value}"
+        "*"
       ]
     },
     {
