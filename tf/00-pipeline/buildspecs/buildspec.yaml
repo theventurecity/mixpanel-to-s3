@@ -13,7 +13,7 @@ phases:
   build:
     commands:
       - echo Install dependencies
-      - aws s3 cp s3://${APP}-${ENV}-configfiles-${ACCOUNT_ID}-${REGION}/firebaseKey.json push/production/firebaseKey.json
+      #- aws s3 cp s3://${APP}-${ENV}-configfiles-${ACCOUNT_ID}-${REGION}/firebaseKey.json push/production/firebaseKey.json
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
