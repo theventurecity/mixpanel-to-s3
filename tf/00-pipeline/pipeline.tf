@@ -38,7 +38,7 @@ resource "aws_codepipeline" "this" {
       output_artifacts = ["source_output"]
       # Grant Access manually via Console
       configuration    = {
-        ConnectionArn        = "arn:aws:codestar-connections:us-east-1:626564103878:connection/e0177af2-daf6-4835-824c-9460855b3613"
+        ConnectionArn        = data.aws_ssm_parameter.codestar_arn.value
         FullRepositoryId     = "appinioGmbH/mixpanel-to-s3"
         BranchName           = var.branch[var.env]
         OutputArtifactFormat = "CODEBUILD_CLONE_REF"

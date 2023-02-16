@@ -1,12 +1,12 @@
 data "aws_caller_identity" "current" {}
 
 data "aws_ecs_cluster" this {
-  cluster_name = "redshift-manually-created"
+  cluster_name = "${var.app}-${var.env}"
 }
 
 data "aws_vpc" "this" {
   tags = {
-    Name = "sandbox-1-dev"
+    Name = "${var.app}-${var.env}"
   }
 }
 
