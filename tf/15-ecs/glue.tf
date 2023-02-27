@@ -51,29 +51,3 @@ resource "aws_iam_policy_attachment" "console_glue" {
   policy_arn = "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"
 }
 
-resource "random_string" "redshift_password" {
-  length  = 16
-  special = false
-}
-
-resource "aws_ssm_parameter" "redshift_password" {
-  name      = "redshift_cluster"
-  type      = "SecureString"
-  value     = random_string.redshift_password.result
-  overwrite = "false"
-  lifecycle {
-    ignore_changes = [
-      value,
-      overwrite,
-    ]
-  }
-}
-
-resource "aws_redshift_cluster" "example" {
-  cluster_identifier = "tf-redshift-cluster"
-  database_name      = aws_glue_catalog_database.aws_glue_catalog_database.name
-  master_username    = "admin"
-  master_password    = aws_ssm_parameter.redshift_password.value
-  node_type          = "dc2.large"
-  cluster_type       = "single-node"
-}

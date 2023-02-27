@@ -161,6 +161,14 @@ resource "aws_iam_role_policy" "deployer" {
       "Resource": ["*"]
     },
     {
+      "Sid": "Glue",
+      "Effect": "Allow",
+      "Action": [
+        "glue:*"
+      ],
+      "Resource": ["*"]
+    },
+    {
       "Sid": "ECSwrite",
       "Effect": "Allow",
       "Action": [
