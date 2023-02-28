@@ -45,7 +45,7 @@ EOF
 
 resource "aws_iam_role" "task_role" {
   name               = "${local.basename}-task-role"
-  depends_on         = [aws_s3_bucket.appi_mixpanel_bucket]
+  depends_on         = [aws_s3_bucket.appi_redshift_mixpanel_bucket]
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -77,8 +77,8 @@ resource "aws_iam_role_policy" "task_role_policy" {
       ],
       "Effect": "Allow",
       "Resource": [
-        "${aws_s3_bucket.appi_mixpanel_bucket.arn}",
-        "${aws_s3_bucket.appi_mixpanel_bucket.arn}/*"
+        "${aws_s3_bucket.appi_redshift_mixpanel_bucket.arn}",
+        "${aws_s3_bucket.appi_redshift_mixpanel_bucket.arn}/*"
       ]
     }
   ]
