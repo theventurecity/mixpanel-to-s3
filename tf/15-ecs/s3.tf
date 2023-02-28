@@ -51,7 +51,7 @@ resource "aws_s3_bucket_versioning" "appi_mixpanel_bucket_versioning" {
     status = "Enabled"
   }
 }
-resource "aws_s3_bucket_public_access_block" "appi_media_bucket_block_public_ccess" {
+resource "aws_s3_bucket_public_access_block" "appi_mixpanel_bucket_block_public_ccess" {
   bucket                  = "appi-redshift-mongo-${var.env}"
   block_public_acls       = true
   block_public_policy     = true
