@@ -36,7 +36,7 @@ fi
 aws sts get-caller-identity
 
 # select workspace or setup workspace, if it is unknown locally
-terraform workspace select "${ENV}-${SERVICE}" || ./init.sh ${ENV}
+terraform workspace select "${ENV}-${SERVICE}" || bash ./init.sh ${ENV}
 
 if [ -n "${CODEBUILD_SRC_DIR}" ]; then
     terraform plan \

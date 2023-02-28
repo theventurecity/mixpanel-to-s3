@@ -33,21 +33,19 @@ resource "aws_iam_role" "glue" {
 EOF
 }
 
-resource "aws_iam_policy_attachment" "s3_glue" {
-  name       = "S3ForGlue"
-  roles      = [aws_iam_role.glue.name]
+// use "aws_iam_role_policy_attachment" over "aws_iam_policy_attachment" for the following reason
+// https://github.com/hashicorp/terraform-provider-aws/issues/3555
+resource "aws_iam_role_policy_attachment" "s3_glue" {
+  role       = aws_iam_role.glue.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
-resource "aws_iam_policy_attachment" "service_glue" {
-  name       = "GlueServiceRole"
-  roles      = [aws_iam_role.glue.name]
+resource "aws_iam_role_policy_attachment" "service_glue" {
+  role       = aws_iam_role.glue.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
 
-resource "aws_iam_policy_attachment" "console_glue" {
-  name       = "GlueConsole"
-  roles      = [aws_iam_role.glue.name]
+resource "aws_iam_role_policy_attachment" "glue_console" {
+  role       = aws_iam_role.glue.name
   policy_arn = "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"
 }
-
