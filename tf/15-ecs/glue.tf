@@ -9,7 +9,7 @@ resource "aws_glue_crawler" "example" {
   role          = aws_iam_role.glue.arn
     table_prefix = "stg_"
   s3_target {
-    path = "s3://${aws_s3_bucket.appi_mixpanel_bucket.bucket}/mixpanel/"
+    path = "s3://${aws_s3_bucket.appi_redshift_mixpanel_bucket.bucket}/mixpanel/"
   }
 }
 
