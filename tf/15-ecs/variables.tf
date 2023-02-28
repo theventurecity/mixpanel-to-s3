@@ -37,3 +37,7 @@ variable "account_type" {
 variable "branch" {
   type = map(string)
 }
+
+variable "vanta_owner" {
+  type = string
+}
