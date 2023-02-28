@@ -45,7 +45,7 @@ resource "aws_s3_bucket" "appi_redshift_mongo_bucket" {
   }
 }
 
-resource "aws_s3_bucket_versioning" "appi_mixpanel_bucket_versioning" {
+resource "aws_s3_bucket_versioning" "appi_redshift_mongo_versioning" {
   bucket = aws_s3_bucket.appi_redshift_mongo_bucket.id
   versioning_configuration {
     status = "Enabled"
