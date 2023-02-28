@@ -4,7 +4,7 @@ resource "aws_glue_catalog_database" "aws_glue_catalog_database" {
 
 resource "aws_glue_crawler" "example" {
   database_name = aws_glue_catalog_database.aws_glue_catalog_database.name
-  schedule      = "cron( 0 8 * * ? *)"
+  schedule      = "cron(0 8 * * ? *)"
   name          = "mixpanel-crawler"
   role          = aws_iam_role.glue.arn
     table_prefix = "stg_"

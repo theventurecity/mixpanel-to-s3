@@ -4,7 +4,7 @@ resource "aws_scheduler_schedule" "mixPanel" {
     mode = "OFF"
   }
 
-  schedule_expression = "cron( 0 6 * * ? *)"
+  schedule_expression = "cron(0 6 * * ? *)"
 
   target {
     arn      = data.aws_ecs_cluster.this.arn
