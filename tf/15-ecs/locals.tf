@@ -6,6 +6,8 @@ locals {
     service = var.service
     env = var.env
     crew = var.crew
+    VantaOwner = var.vanta_owner
+    VantaNonProd = var.env != "prod"
   }
 
   container_port_https = 443
