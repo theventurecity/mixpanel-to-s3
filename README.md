@@ -1,5 +1,8 @@
 # mixpanel-to-s3.py
 
+## Important note
+This project is deployed only on prod.
+
 ## Description
 A Dockerized Python script that will export all raw events from MixPanel API and upload to an AWS S3 Bucket
 
@@ -41,3 +44,4 @@ This folder naming convention make it easier to be queried with tools like Hive 
 
 ![data_pipeline drawio](https://user-images.githubusercontent.com/10829464/151036494-ef6cd43b-4701-464d-aaa0-0be282a9ac1c.png)
 
+This needs to be updated.

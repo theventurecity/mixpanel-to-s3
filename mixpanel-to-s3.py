@@ -14,9 +14,6 @@ if using Docker, you can store the environment variables in a file with one ENVV
 then run the docker container with --env-file parameter like:
   docker run --env-file file_with_env_vars docker_image_name:tag
 '''
-AWS_REGION              = os.environ['AWS_REGION']
-AWS_ACCESS_KEY_ID       = os.environ['AWS_ACCESS_KEY_ID'] # Need an IAM user with read/write access to S3 bucket
-AWS_SECRET_ACCESS_KEY   = os.environ['AWS_SECRET_ACCESS_KEY'] # Need an IAM user with read/write access to S3 bucket
 S3_BUCKET               = os.environ['S3_BUCKET']
 S3_PATH                 = os.environ['S3_PATH'] # DO NOT use leading or trailing slash /
 MIXPANEL_API_SECRET     = os.environ['MIXPANEL_API_SECRET']
@@ -34,18 +31,16 @@ Last Updated: 2018-10-16
 class mixpanelS3:
     PART_SIZE = 5*1024*1024 # 5 Mbytes is minimum part size for S3 multipart uploads.
 
-    def __init__(self, mixpanel_api_secret, aws_region, aws_id, aws_secret, logger, use_threads=True):        
+    def __init__(self, mixpanel_api_secret, logger, use_threads=True):        
         self.api_secret = mixpanel_api_secret
-        self.aws_region = aws_region
-        self.aws_id = aws_id
-        self.aws_secret = aws_secret
+        # self.aws_region = aws_region
+        # self.aws_id = aws_id
+        # self.aws_secret = aws_secret
         self.use_threads = use_threads
         self.logger = logger
         self.s3_client = boto3.client(
             service_name='s3', 
-            region_name=aws_region,
-            aws_access_key_id=aws_id,
-            aws_secret_access_key=aws_secret)
+        )
     
     # See: https://mixpanel.com/help/reference/exporting-raw-data
     def exportEvents(self, from_date, to_date, event=None, where=None, stream=True):
@@ -68,9 +63,13 @@ class mixpanelS3:
             req_params['params']['where'] = event
         response = requests.request(**req_params)
         self.logger.info('Got HTTP response from {}: {}'.format(response.request.url, response.status_code))
+        self.logger.info('Got HTTP body from {}: {}'.format(response.request.url, response))
+
         return response
     
     def s3MultipartUpload(self, httpResponse, bucket, key):
+        self.logger.info('Starting the multipart upload....')
+
         if httpResponse.status_code != requests.codes.ok:
             self.logger.error('Nothing to upload! HTTP Status: {}'.format(httpResponse.status_code))
             return
@@ -103,9 +102,6 @@ log.setLevel(logging.DEBUG)
 # Main...
 mixpanel = mixpanelS3(
     MIXPANEL_API_SECRET, 
-    AWS_REGION, 
-    AWS_ACCESS_KEY_ID, 
-    AWS_SECRET_ACCESS_KEY, 
     logger=log
 )
 start = datetime.date.fromisoformat(START_DATE)
