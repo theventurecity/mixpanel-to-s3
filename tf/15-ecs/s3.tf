@@ -135,7 +135,12 @@ data "aws_iam_policy_document" "allow_access" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["${var.account_ids.prod}"]
+      identifiers = [
+        "${var.account_ids.prod}",
+        // todo: Get "Admin" & "Business-Intelligence" Group's roles by data
+        "arn:aws:iam::943171019129:role/aws-reserved/sso.amazonaws.com/eu-central-1/AWSReservedSSO_admin_d77365dbcf93ae29",
+        "arn:aws:iam::943171019129:role/aws-reserved/sso.amazonaws.com/eu-central-1/AWSReservedSSO_bi_0965ac42111dff99"
+      ]
     }
 
     actions = [
