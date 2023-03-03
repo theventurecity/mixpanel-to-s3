@@ -121,6 +121,12 @@ resource "aws_s3_bucket_public_access_block" "appi_bi_bucket_block_public_access
   restrict_public_buckets = true
   depends_on              = [aws_s3_bucket.appi_bi_bucket]
 }
+resource "aws_s3_bucket_versioning" "appi_bi_bucket_versioning" {
+  bucket = aws_s3_bucket.appi_bi_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 resource "aws_s3_bucket_policy" "allow_access" {
   bucket = aws_s3_bucket.appi_bi_bucket.id
   policy = data.aws_iam_policy_document.allow_access.json
