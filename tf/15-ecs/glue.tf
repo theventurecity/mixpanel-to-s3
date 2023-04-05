@@ -49,3 +49,8 @@ resource "aws_iam_role_policy_attachment" "glue_console" {
   role       = aws_iam_role.glue.name
   policy_arn = "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"
 }
+
+resource "aws_iam_role_policy_attachment" "s3_readonly_console" {
+  role       = aws_iam_role.glue.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}

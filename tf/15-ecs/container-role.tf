@@ -73,7 +73,7 @@ resource "aws_iam_role_policy" "task_role_policy" {
   "Statement": [
     {
       "Action": [
-        "s3:PutObject"
+        "s3:*"
       ],
       "Effect": "Allow",
       "Resource": [
